@@ -1,0 +1,74 @@
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+Blog Create
+{%endblock%}
+
+
+{%block content%}
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Profiliniz </h3>
+            <div class="inner-sec">
+        <div class="login p-5 bg-light mx-auto mw-100">
+            <form action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                    <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                    <label for="validationCustom01">Ad Soyad</label>
+
+                                <input type="text" class="form-control"
+                                name="name" id="validationDefault01" placeholder="" required=""  value="{{writer.WriterName}}">
+                            </div>
+                            
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                    <label for="validationCustom01">Mail Adresiniz</label>
+
+                                <input type="email" name="mail" class="form-control"
+                                 id="validationDefault01" placeholder="" required="" readonly value="{{writer.WriterMail}}">
+                            </div>
+                            
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                            <label for="content" >Yazar Hakkında</label>
+                            <textarea name="about" class="form-control" id="content"
+                                placeholder="Kendinizi Tanıtın" rows="5"  required >{{writer.WriterAbout}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                            <label for="image" >Resminiz</label>
+                            {% if writer.WriterImage %}
+                            <img src="{{ writer.WriterImage.url }}" alt="{{writer.WriterName}}" class="img-thumbnail mb-2" style="max-width: 100px;">
+                             {% endif %}
+                            <input type="file" name="image" class="form-control-file" id="image" >
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                    <label for="validationCustom01">Şifreniz</label>
+
+                                <input type="password" name="password" class="form-control"
+                                id="validationDefault01" placeholder="*********" >
+                            </div>
+                            
+                        </div>
+                       
+                        
+
+
+
+
+
+                        <button type="submit" class="btn btn-primary submit mb-4">GÜncelle</button>
+                            
+                    </form>
+    
+                </div>
+        </div>
+    </div>
+</section>
+{%endblock%}

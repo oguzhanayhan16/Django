@@ -1,0 +1,57 @@
+
+
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+	Yazarlar
+{%endblock%}
+
+{%block content%}
+
+
+
+<style>
+    .elips-image {
+        width: 200px; 
+        height: 200px; 
+        object-fit: cover; 
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto; 
+    }
+    .card-body.text-center {
+        text-align: center; 
+    }
+</style>
+	<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			<h3 class="tittle">Yazarlar</h3>
+			<div class="inner-sec">
+				<div class="left-blog-info-w3layouts-agileits text-left">
+                    <div class="row">
+                     
+
+                        {% for writ in writer%}
+                        <div class="col-lg-4 card">
+                            <a href="{% url 'writerPage' writ.slug%}">
+                                <img src="{{ writ.WriterImage.url }}" class="card-img-top img-fluid elips-image" alt="{{ writ.WriterName }}">
+                            </a>
+                    
+                            <div class="card-body">
+                                <h5 class="card-text text-center">
+                                    <strong>Yazar:</strong> {{writ.WriterName}}
+                                </h5>
+                              
+                             
+                            </div>
+                        </div>
+                        {% endfor %}
+                
+                    </div>
+                    
+					<!--//left-->
+				</div>
+			</div>
+		</div>
+	</section>
+	{%endblock%}

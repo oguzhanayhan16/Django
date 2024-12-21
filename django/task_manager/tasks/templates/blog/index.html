@@ -1,0 +1,55 @@
+
+
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+	Home Page
+{%endblock%}
+
+{%block content%}
+
+<style>
+    .card-img-top {
+    width: 100%;          
+    height: 220px;      
+    object-fit: cover;    
+}   
+</style>
+	<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			<h3 class="tittle">Blog Posts</h3>
+			<div class="inner-sec">
+				<!--left-->
+				<div class="left-blog-info-w3layouts-agileits text-left">
+                    <div class="row">
+                     
+
+                        {% for blog in blogs %}
+                        <div class="col-lg-4 card">
+                            <a href="{% url 'blog_details' blog.slug %}">
+                                <img src="{{ blog.BlogImage.url }}" class="card-img-top img-fluid" alt="{{ blog.BlogTitle }}">
+                            </a>
+                    
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <strong>Yazar:</strong> {{ blog.writer.WriterName }}
+                                </p>
+                                <h5 class="card-title">
+                                    {{ blog.BlogTitle }}
+                                </h5>
+                                <p class="card-text mb-3">
+                                    {{ blog.BlogContent|truncatechars:50 }}
+                                </p>
+                                
+                                <a href="{% url 'blog_details' blog.slug %}" class="btn btn-primary read-m">Devamını Oku</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    
+					<!--//left-->
+				</div>
+			</div>
+		</div>
+	</section>
+	{%endblock%}

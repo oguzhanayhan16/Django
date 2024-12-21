@@ -1,0 +1,70 @@
+{% extends "layout.html"%}
+{% load static %}
+{% block title %}
+	{{blog.BlogTitle}}
+{%endblock%}
+
+
+
+{%block content%}
+
+<section class="banner-bottom">
+	<!--/blog-->
+	<div class="container">
+		<div class="row">
+			<!--left-->
+			<div class="col-lg-12 left-blog-info-w3layouts-agileits text-left">
+		
+				<div class="blog-grid-top">
+					<div class="b-grid-top">
+						<div class="blog_info_left_grid">
+							<a href="{% url 'blog_details' blog.slug %}">
+								<img src="{{blog.BlogImage.url}}" 
+									 class="img-fluid" 
+									 style="width: 100%; height: 500px;" 
+									 alt="">
+							</a>
+						</div>
+						<div class="blog-info-middle">
+							<ul>
+								<li>
+									<a href="#">
+											<i class="far fa-calendar-alt">{{ blog.BlogCreateDate|date:"d M Y" }}</i> 
+											
+									</a>
+								</li>
+						
+							
+
+							</ul>
+						</div>
+					</div>
+					<h5 style="margin-top:15px">Yazar: <a href="{% url 'writerPage' blog.writer.slug %}"> {{ blog.writer.WriterName }}</a></h5>
+					<h3>
+						{{blog.BlogTitle}}
+					</h3>
+					<p>
+							{{blog.BlogContent}}
+					</p>
+					<a href="/" class="btn btn-primary read-m">Blog Listesi</a>
+				</div>
+				<div style="margin-top:15px">
+					
+					{% if user.is_authenticated and request.user.id == blog.writer.id %}
+    				<a href="{% url 'editBlog' blog.slug %}" class="btn btn-info read-m">BLOG DÜZENLE</a>
+					<form action="{% url 'deleteBlog' blog.slug %}" method="POST" style="display: inline;">
+						{% csrf_token %}
+						<button type="submit" class="btn btn-danger read-m" onclick="return confirm('Bu bloğu silmek istediğinize emin misiniz?');">
+							BLOG SİL
+						</button>
+					</form>
+					{% endif %}
+
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+{%endblock%}

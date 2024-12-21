@@ -1,0 +1,31 @@
+
+<div class="tech-btm">
+	<h3>Son Gönderiler</h3>
+	{% for blog in last_3_blogs%}
+	
+	<div class="blog-grids row mb-3">
+		<div class="col-md-5 blog-grid-left">
+			<a href="{% url 'blog_details' blog.slug %}">
+				<img src="{{ blog.BlogImage.url }}" class="card-img-top "  style="width: 100%;height: 100%;"  alt="{{blog.BlogTitle}}">
+			</a>
+		</div>
+		
+			
+		<div class="col-md-7 blog-grid-right">
+            <h4>
+                <a href="{% url 'blog_details' blog.slug %}" style="color:lightgray">{{blog.BlogTitle}} </a> 
+            </h4>  
+			<h5>
+					 <a href="{% url 'blog_details' blog.slug %}" style="color:#808080;">{{blog.BlogContent}} </a> 
+			</h5>
+			<div class="sub-meta">
+				<span>
+						<i class="far fa-clock"></i> {{blog.BlogCreateDate}}
+				</span>
+			</div>
+		</div>
+		
+
+	</div>
+	{%endfor%}
+</div>
